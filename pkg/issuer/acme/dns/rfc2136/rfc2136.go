@@ -97,12 +97,12 @@ func NewDNSProviderCredentials(nameserver, tsigAlgorithm, tsigKeyName, tsigSecre
 
 // Present creates a TXT record using the specified parameters
 func (r *DNSProvider) Present(_, fqdn, zone, value string) error {
-	return r.changeRecord("INSERT", fqdn, zone, value, 60)
+	return r.changeRecord("INSERT", fqdn, zone, value, 300)
 }
 
 // CleanUp removes the TXT record matching the specified parameters
 func (r *DNSProvider) CleanUp(_, fqdn, zone, value string) error {
-	return r.changeRecord("REMOVE", fqdn, zone, value, 60)
+	return r.changeRecord("REMOVE", fqdn, zone, value, 300)
 }
 
 func (r *DNSProvider) changeRecord(action, fqdn, zone, value string, ttl int) error {
